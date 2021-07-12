@@ -1,8 +1,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Arvdl Notes</title>
+    <title>arvdl notes</title>
     <link>https://arvdl.github.io/</link>
-    <description>Recent content on Arvdl Notes</description>
+    <description>Recent content on arvdl notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://arvdl.github.io/index.xml" rel="self" type="application/rss+xml" />
   </channel>
