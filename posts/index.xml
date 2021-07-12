@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on arvdl notes</title>
+    <link>https://arvdl.github.io/posts/</link>
+    <description>Recent content in Posts on arvdl notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Jul 2020 11:26:54 +0700</lastBuildDate><atom:link href="https://arvdl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MAC Address Spoofing on Linux</title>
+      <link>https://arvdl.github.io/posts/mac-address-linux/</link>
+      <pubDate>Sun, 12 Jul 2020 11:26:54 +0700</pubDate>
+      
+      <guid>https://arvdl.github.io/posts/mac-address-linux/</guid>
+      <description>Intro  MAC address (Media Access Control) is an identifier for our network devices that we use. It&amp;rsquo;s unique identifier, every network devices has different identities.
+Mostly, MAC address are available at IEEE 802 networking technology such as Ethernet, Wi-Fi, and Bluetooth. And every devies that we uses such as Laptop, Computer, or even Smartphone has MAC address on top of it.
+For this guide, i will show you how to automatically change MAC address of your Linux system using systemd-networkd service and using the NetworkManager application.</description>
+    </item>
+    
+  </channel>
+</rss>

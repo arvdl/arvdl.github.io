@@ -4,6 +4,157 @@
     <link>https://arvdl.github.io/</link>
     <description>Recent content on arvdl notes</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://arvdl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Jul 2020 11:26:54 +0700</lastBuildDate><atom:link href="https://arvdl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+    <title>MAC Address Spoofing on Linux</title>
+    <link>https://arvdl.github.io/posts/mac-address-linux/</link>
+    <pubDate>Sun, 12 Jul 2020 11:26:54 +0700</pubDate>
+    
+    <guid>https://arvdl.github.io/posts/mac-address-linux/</guid>
+    <description>
+        &lt;h2 id=&#34;intro&#34;&gt;
+    &lt;a href=&#34;#intro&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    Intro
+&lt;/h2&gt;
+&lt;p&gt;MAC address (Media Access Control) is an identifier for our network devices that we use. It&amp;rsquo;s unique identifier, every network devices has different identities.&lt;/p&gt;
+&lt;p&gt;Mostly, MAC address are available at IEEE 802 networking technology such as Ethernet, Wi-Fi, and  Bluetooth. And every devies that we uses such as Laptop, Computer, or even Smartphone has MAC address on top of it.&lt;/p&gt;
+&lt;p&gt;For this guide, i will show you how to automatically change MAC address of your Linux system using &lt;code&gt;systemd-networkd&lt;/code&gt; service and using the &lt;code&gt;NetworkManager&lt;/code&gt; application.&lt;/p&gt;
+&lt;h2 id=&#34;check-mac-address&#34;&gt;
+    &lt;a href=&#34;#check-mac-address&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    Check MAC address
+&lt;/h2&gt;
+&lt;p&gt;Before going any further, check the MAC address on the system using the &lt;code&gt;ip&lt;/code&gt; command as below.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ip a
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;And you will be shown the MAC address of your machine as &lt;code&gt;link/ether 12:9a:5b:0d:xx:xx ...&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you want to know what a vender of your MAC address you used, visit the site &lt;a href=&#34;https://macvendors.com/&#34;&gt;https://macvendors.com/&lt;/a&gt;, copy and paste your MAC address on the page, and you will get details vender of your MAC address you&amp;rsquo;re using.&lt;/p&gt;
+&lt;h2 id=&#34;spoof-mac-address-with-systemd-networkd-service&#34;&gt;
+    &lt;a href=&#34;#spoof-mac-address-with-systemd-networkd-service&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    Spoof MAC address with systemd-networkd service
+&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;systemd-networkd&lt;/code&gt; is a services that manages networking configuration. As networking devices appears, the service will automatically detects and configure your networking devies. Also, it can create virtual network devices.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;systemd-networkd&lt;/code&gt; is part of systemd, so ensure you&amp;rsquo;re using an operating system with &lt;code&gt;systemd&lt;/code&gt; running on top of your OS.&lt;/p&gt;
+&lt;p&gt;Run the &lt;code&gt;systemd-networkd&lt;/code&gt; services and add it to start automaticall on the system boot using following commands.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo systemctl start systemd-networkd
+sudo systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; systemd-networkd
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Next, create a new configuration for your devices on the &lt;code&gt;/etc/systemd/network&lt;/code&gt; directory. For example below I create the configuration &lt;code&gt;wlan0.link&lt;/code&gt; to change my &lt;code&gt;wlan0&lt;/code&gt; interface MAC address.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo nano /etc/systemd/network/wlan0.link
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Change &lt;code&gt;MACAddress=xx:xx:xx:xx:xx:xx&lt;/code&gt; with your real MAC address, copy and paste to your configuration.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[Match]
+MACAddress=xx:xx:xx:xx:xx:xx
+
+[Link]
+MACAddressPolicy=random
+NamePolicy=kernel database onboard slot path
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Save.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Instead of random MAC address on every boot, you can use pre-defined static MAC address by changing the &lt;code&gt;MACAddressPolicy=random&lt;/code&gt; to static configuration &lt;code&gt;MACAddress=Static Spoofed MAC&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Now restart the &lt;code&gt;systemd-networkd&lt;/code&gt; services to apply.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo systemctl restart systemd-networkd
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Check again your MAC address usin gthe &lt;code&gt;ip a&lt;/code&gt; command and it has been changed. Otherwise, you can reboot your system.&lt;/p&gt;
+&lt;h2 id=&#34;spoof-mac-address-with-networkmanager&#34;&gt;
+    &lt;a href=&#34;#spoof-mac-address-with-networkmanager&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    Spoof MAC Address with NetworkManager
+&lt;/h2&gt;
+&lt;p&gt;The second way to change MAC address is by using the &lt;code&gt;NetworkManager&lt;/code&gt; application, mostly available on every Linux Desktop.&lt;/p&gt;
+&lt;p&gt;Edit the &lt;code&gt;/etc/NetworkManager/NetworkManager.conf&lt;/code&gt; configuration file.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo vim /etc/NetworkManager/NetworkManager.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Now paste the following configuration to the end of the line.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[device-mac-randomization]
+# &amp;quot;yes&amp;quot; is already the default for scanning
+wifi.scan-rand-mac-address=yes
+ 
+[connection-mac-randomization]
+# Randomize MAC for every ethernet connection
+ethernet.cloned-mac-address=random
+# Generate a random MAC for each WiFi and associate the two permanently.
+wifi.cloned-mac-address=random
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Save and close.&lt;/p&gt;
+&lt;p&gt;Next, restart the &lt;code&gt;NetworkManager&lt;/code&gt; services to apply.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo systemctl restart NetworkManager
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;As a result, you will get random MAC address everytime you make connection to the network, on Wi-Fi and Ethernet.&lt;/p&gt;
+&lt;h2 id=&#34;reference&#34;&gt;
+    &lt;a href=&#34;#reference&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    Reference
+&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://wiki.archlinux.org/index.php/MAC_address_spoofing&#34;&gt;Archwiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.gnome.org/NetworkManager/stable/NetworkManager.conf.html&#34;&gt;Gnome NetworkManager&lt;/a&gt;&lt;/p&gt;
+
+    </description>
+    </item>
+    
   </channel>
 </rss>
