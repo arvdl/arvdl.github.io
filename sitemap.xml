@@ -2,22 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://arvdl.github.io/</loc>
+    <lastmod>2021-07-14T08:34:39+07:00</lastmod>
+  </url><url>
+    <loc>https://arvdl.github.io/tags/desktop/</loc>
+    <lastmod>2021-07-14T08:34:39+07:00</lastmod>
+  </url><url>
+    <loc>https://arvdl.github.io/posts/gnome40-manjaro-blank/</loc>
+    <lastmod>2021-07-14T08:34:39+07:00</lastmod>
+  </url><url>
+    <loc>https://arvdl.github.io/posts/</loc>
+    <lastmod>2021-07-14T08:34:39+07:00</lastmod>
+  </url><url>
+    <loc>https://arvdl.github.io/tags/</loc>
+    <lastmod>2021-07-14T08:34:39+07:00</lastmod>
+  </url><url>
     <loc>https://arvdl.github.io/articles/</loc>
     <lastmod>2021-07-12T11:30:07+07:00</lastmod>
-  </url><url>
-    <loc>https://arvdl.github.io/</loc>
-    <lastmod>2020-07-12T11:26:54+07:00</lastmod>
   </url><url>
     <loc>https://arvdl.github.io/posts/mac-address-linux/</loc>
     <lastmod>2020-07-12T11:26:54+07:00</lastmod>
   </url><url>
-    <loc>https://arvdl.github.io/posts/</loc>
-    <lastmod>2020-07-12T11:26:54+07:00</lastmod>
-  </url><url>
     <loc>https://arvdl.github.io/tags/privacy/</loc>
-    <lastmod>2020-07-12T11:26:54+07:00</lastmod>
-  </url><url>
-    <loc>https://arvdl.github.io/tags/</loc>
     <lastmod>2020-07-12T11:26:54+07:00</lastmod>
   </url><url>
     <loc>https://arvdl.github.io/tags/tips/</loc>

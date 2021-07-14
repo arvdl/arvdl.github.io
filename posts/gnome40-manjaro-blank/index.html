@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="theme-color" content="dark">
-    <title>MAC Address Spoofing on Linux | arvdl notes</title>
+    <title>Gnome40 Manjaro Blank After Upgrade | arvdl notes</title>
 
     
     
     
     <meta property="og:site_name" content="🐳arvdl notes" />
-    <meta property="og:title" content="MAC Address Spoofing on Linux | arvdl notes"/>
-    <meta itemprop="name" content="MAC Address Spoofing on Linux | arvdl notes" />
-    <meta name="twitter:title" content="MAC Address Spoofing on Linux | arvdl notes" />
-    <meta name="application-name" content="MAC Address Spoofing on Linux | arvdl notes" />
+    <meta property="og:title" content="Gnome40 Manjaro Blank After Upgrade | arvdl notes"/>
+    <meta itemprop="name" content="Gnome40 Manjaro Blank After Upgrade | arvdl notes" />
+    <meta name="twitter:title" content="Gnome40 Manjaro Blank After Upgrade | arvdl notes" />
+    <meta name="application-name" content="Gnome40 Manjaro Blank After Upgrade | arvdl notes" />
 
 
     <meta name="description" content="Just notes and blog!" />
@@ -80,21 +80,19 @@
         <header class="article-header">
             <div class="thumb">
                 <div>
-                    <h1>MAC Address Spoofing on Linux</h1>
+                    <h1>Gnome40 Manjaro Blank After Upgrade</h1>
                     <div class="post-meta">
                         <div>
                             
                             
                               
                             
-                            By arvdl | <time>July 12, 2020</time>
-                            | 3 minutes
+                            By arvdl | <time>July 14, 2021</time>
+                            | 2 minutes
                         </div>
                         <div class="tags">
                             
-                            <a href="/tags/privacy/">privacy</a>
-                            
-                            <a href="/tags/tips/">tips</a>
+                            <a href="/tags/desktop/">desktop</a>
                             
                         </div>
                     </div>
@@ -114,135 +112,105 @@
     </a>
     Intro
 </h2>
-<p>MAC address (Media Access Control) is an identifier for our network devices that we use. It&rsquo;s unique identifier, every network devices has different identities.</p>
-<p>Mostly, MAC address are available at IEEE 802 networking technology such as Ethernet, Wi-Fi, and  Bluetooth. And every devies that we uses such as Laptop, Computer, or even Smartphone has MAC address on top of it.</p>
-<p>For this guide, i will show you how to automatically change MAC address of your Linux system using <code>systemd-networkd</code> service and using the <code>NetworkManager</code> application.</p>
-<h2 id="check-mac-address">
-    <a href="#check-mac-address" class="anchor">
+<p>On the last update, Manjaro got so much packages updated, including the Gnome 40, Pacman 6.0, KDE 5.22.</p>
+<p>I&rsquo;m using gnome with <strong>nvidia</strong> driver, so when the update hit me, i got an error. When I login to Gnome, there just blank window without anything. But the strange thing is my <code>Night Ligt</code> is activated, so I though there is no problem about the kernel driver <code>nvidia</code>.</p>
+<p>I checked the boot log from the <code>tty</code> session, there is no error related my nvidia driver. So I believe there is an error about my gnome desktop.</p>
+<p>Below step-by-step I just done to solve my gnome40 blank issue.</p>
+<h2 id="backup-previous-gnome-configuration">
+    <a href="#backup-previous-gnome-configuration" class="anchor">
         <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
             <path fill-rule="evenodd"
                 d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
             </path>
         </svg>
     </a>
-    Check MAC address
+    Backup Previous Gnome Configuration
 </h2>
-<p>Before going any further, check the MAC address on the system using the <code>ip</code> command as below.</p>
+<p>Turn up your computer and once you got the GDM login, press the button <code>Ctrl + Alt + F2</code> to access the <code>TTY</code> session, then login with your username and password.</p>
+<p>Backup your gnome configuration using the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">ip a
+<pre class="chroma"><code class="language-bash" data-lang="bash">mv ~/.config/gnome/user ~/Desktop/user.bak
 </code></pre></td></tr></table>
 </div>
-</div><p>And you will be shown the MAC address of your machine as <code>link/ether 12:9a:5b:0d:xx:xx ...</code>.</p>
-<p>If you want to know what a vender of your MAC address you used, visit the site <a href="https://macvendors.com/">https://macvendors.com/</a>, copy and paste your MAC address on the page, and you will get details vender of your MAC address you&rsquo;re using.</p>
-<h2 id="spoof-mac-address-with-systemd-networkd-service">
-    <a href="#spoof-mac-address-with-systemd-networkd-service" class="anchor">
+</div><h2 id="add-new-user">
+    <a href="#add-new-user" class="anchor">
         <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
             <path fill-rule="evenodd"
                 d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
             </path>
         </svg>
     </a>
-    Spoof MAC address with systemd-networkd service
+    Add New User
 </h2>
-<p>The <code>systemd-networkd</code> is a services that manages networking configuration. As networking devices appears, the service will automatically detects and configure your networking devies. Also, it can create virtual network devices.</p>
-<p>The <code>systemd-networkd</code> is part of systemd, so ensure you&rsquo;re using an operating system with <code>systemd</code> running on top of your OS.</p>
-<p>Run the <code>systemd-networkd</code> services and add it to start automaticall on the system boot using following commands.</p>
+<p>Create new user to generate default gnome configuration and reboot the system.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo systemctl start systemd-networkd
-sudo systemctl <span class="nb">enable</span> systemd-networkd
-</code></pre></td></tr></table>
-</div>
-</div><p>Next, create a new configuration for your devices on the <code>/etc/systemd/network</code> directory. For example below I create the configuration <code>wlan0.link</code> to change my <code>wlan0</code> interface MAC address.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo nano /etc/systemd/network/wlan0.link
-</code></pre></td></tr></table>
-</div>
-</div><p>Change <code>MACAddress=xx:xx:xx:xx:xx:xx</code> with your real MAC address, copy and paste to your configuration.</p>
-<pre><code class="language-conf" data-lang="conf">[Match]
-MACAddress=xx:xx:xx:xx:xx:xx
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo useradd -m -s /bin/bash newuser
+sudo passwd newuser
 
-[Link]
-MACAddressPolicy=random
-NamePolicy=kernel database onboard slot path
-</code></pre><p>Save.</p>
-<p><strong>NOTE</strong>:</p>
-<p>Instead of random MAC address on every boot, you can use pre-defined static MAC address by changing the <code>MACAddressPolicy=random</code> to static configuration <code>MACAddress=Static Spoofed MAC</code>.</p>
-<p>Now restart the <code>systemd-networkd</code> services to apply.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo systemctl restart systemd-networkd
+sudo reboot
 </code></pre></td></tr></table>
 </div>
-</div><p>Check again your MAC address usin gthe <code>ip a</code> command and it has been changed. Otherwise, you can reboot your system.</p>
-<h2 id="spoof-mac-address-with-networkmanager">
-    <a href="#spoof-mac-address-with-networkmanager" class="anchor">
+</div><p>Now you must login to the gnome desktop with the new user, and the default gnome configuration <code>~/.config/gnome/user</code> will be generated.</p>
+<h2 id="copy-configuration-from-new-user-to-old-user">
+    <a href="#copy-configuration-from-new-user-to-old-user" class="anchor">
         <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
             <path fill-rule="evenodd"
                 d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
             </path>
         </svg>
     </a>
-    Spoof MAC Address with NetworkManager
+    Copy Configuration from New User to Old User
 </h2>
-<p>The second way to change MAC address is by using the <code>NetworkManager</code> application, mostly available on every Linux Desktop.</p>
-<p>Edit the <code>/etc/NetworkManager/NetworkManager.conf</code> configuration file.</p>
+<p>Once you get the GDM login, access the <code>TTY</code> session again and login with your <strong><code>OLD</code></strong> user and password.</p>
+<p>Grab the root privileges and copy the gnome configuration from the <code>New User</code> home directory to the <code>Old User</code> home directory.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo vim /etc/NetworkManager/NetworkManager.conf
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo su
+cp /home/newuser/.config/gnome/user /home/olduser/.config/gnome/user
+
+sudo chown olduser:olduser /home/olduser/.config/gnome/user
 </code></pre></td></tr></table>
 </div>
-</div><p>Now paste the following configuration to the end of the line.</p>
-<pre><code class="language-conf" data-lang="conf">[device-mac-randomization]
-# &quot;yes&quot; is already the default for scanning
-wifi.scan-rand-mac-address=yes
- 
-[connection-mac-randomization]
-# Randomize MAC for every ethernet connection
-ethernet.cloned-mac-address=random
-# Generate a random MAC for each WiFi and associate the two permanently.
-wifi.cloned-mac-address=random
-</code></pre><p>Save and close.</p>
-<p>Next, restart the <code>NetworkManager</code> services to apply.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo systemctl restart NetworkManager
-</code></pre></td></tr></table>
-</div>
-</div><p>As a result, you will get random MAC address everytime you make connection to the network, on Wi-Fi and Ethernet.</p>
-<h2 id="reference">
-    <a href="#reference" class="anchor">
+</div><p>Now reboot your system <code>sudo reboot</code>.</p>
+<h2 id="login-with-the-old-user-and-cleanup">
+    <a href="#login-with-the-old-user-and-cleanup" class="anchor">
         <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
             <path fill-rule="evenodd"
                 d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
             </path>
         </svg>
     </a>
-    Reference
+    Login with the Old User and Cleanup
 </h2>
-<p><a href="https://wiki.archlinux.org/index.php/MAC_address_spoofing">Archwiki</a></p>
-<p><a href="https://developer.gnome.org/NetworkManager/stable/NetworkManager.conf.html">Gnome NetworkManager</a></p>
+<p>Now you can login again to the gnome desktop with <code>old user</code> and everything under your home directory is safe, you just need to setup the gnome desktop again as your flavour.</p>
+<p>Now you can delete the new user that we&rsquo;ve created before.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo userdel -r newuser
+</code></pre></td></tr></table>
+</div>
+</div><p>And everything is back.</p>
+<p>The gnome40 is amazing with smooth transition etc, its just awesome 🙈.</p>
 
     </div>
 </div>
@@ -251,12 +219,12 @@ wifi.cloned-mac-address=random
     
     <nav class="flex container suggested">
         
+        <a rel="prev" href="/posts/mac-address-linux/" title="Previous post (older)">
+            <span>Previous</span>
+            MAC Address Spoofing on Linux
+            </a>
         
         
-        <a rel="next" href="/posts/gnome40-manjaro-blank/" title="Next post (newer)">
-            <span>Next</span>
-            Gnome40 Manjaro Blank After Upgrade
-            </a> 
         
     </nav>
     

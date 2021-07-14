@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>desktop on arvdl notes</title>
+    <link>https://arvdl.github.io/tags/desktop/</link>
+    <description>Recent content in desktop on arvdl notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 Jul 2021 08:34:39 +0700</lastBuildDate><atom:link href="https://arvdl.github.io/tags/desktop/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gnome40 Manjaro Blank After Upgrade</title>
+      <link>https://arvdl.github.io/posts/gnome40-manjaro-blank/</link>
+      <pubDate>Wed, 14 Jul 2021 08:34:39 +0700</pubDate>
+      
+      <guid>https://arvdl.github.io/posts/gnome40-manjaro-blank/</guid>
+      <description>Intro  On the last update, Manjaro got so much packages updated, including the Gnome 40, Pacman 6.0, KDE 5.22.
+I&amp;rsquo;m using gnome with nvidia driver, so when the update hit me, i got an error. When I login to Gnome, there just blank window without anything. But the strange thing is my Night Ligt is activated, so I though there is no problem about the kernel driver nvidia.</description>
+    </item>
+    
+  </channel>
+</rss>
