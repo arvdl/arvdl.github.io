@@ -18,6 +18,18 @@ I&amp;rsquo;m using gnome with nvidia driver, so when the update hit me, i got a
     </item>
     
     <item>
+      <title>Setup Nvidia as Default Graphic Instead of Intel on Manjaro Gnome</title>
+      <link>https://arvdl.github.io/posts/nvidia-instead-intel-manjaro-gnome/</link>
+      <pubDate>Sun, 02 Aug 2020 13:53:55 +0700</pubDate>
+      
+      <guid>https://arvdl.github.io/posts/nvidia-instead-intel-manjaro-gnome/</guid>
+      <description>Intro  So i got laptop with dual vga card Nvidia and Intel, the I install Manjaro with Gnome desktop on top of it.
+Now, how I can set up Nvidia as default graphic driver instead of Intel on my manjaro system.
+   Install nvidia graphic driver on manjaro  To install nvidia graphic driver on manjaro, run the following command.
+1  sudo mhwd -a pci nonfree 0300   Now reboot the system and check again the installed nvidia driver.</description>
+    </item>
+    
+    <item>
       <title>MAC Address Spoofing on Linux</title>
       <link>https://arvdl.github.io/posts/mac-address-linux/</link>
       <pubDate>Sun, 12 Jul 2020 11:26:54 +0700</pubDate>

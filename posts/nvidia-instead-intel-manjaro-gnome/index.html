@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="theme-color" content="dark">
-    <title>Gnome40 Manjaro Blank After Upgrade | arvdl notes</title>
+    <title>Setup Nvidia as Default Graphic Instead of Intel on Manjaro Gnome | arvdl notes</title>
 
     
     
     
     <meta property="og:site_name" content="🐳arvdl notes" />
-    <meta property="og:title" content="Gnome40 Manjaro Blank After Upgrade | arvdl notes"/>
-    <meta itemprop="name" content="Gnome40 Manjaro Blank After Upgrade | arvdl notes" />
-    <meta name="twitter:title" content="Gnome40 Manjaro Blank After Upgrade | arvdl notes" />
-    <meta name="application-name" content="Gnome40 Manjaro Blank After Upgrade | arvdl notes" />
+    <meta property="og:title" content="Setup Nvidia as Default Graphic Instead of Intel on Manjaro Gnome | arvdl notes"/>
+    <meta itemprop="name" content="Setup Nvidia as Default Graphic Instead of Intel on Manjaro Gnome | arvdl notes" />
+    <meta name="twitter:title" content="Setup Nvidia as Default Graphic Instead of Intel on Manjaro Gnome | arvdl notes" />
+    <meta name="application-name" content="Setup Nvidia as Default Graphic Instead of Intel on Manjaro Gnome | arvdl notes" />
 
 
     <meta name="description" content="Just notes and blog!" />
@@ -80,19 +80,17 @@
         <header class="article-header">
             <div class="thumb">
                 <div>
-                    <h1>Gnome40 Manjaro Blank After Upgrade</h1>
+                    <h1>Setup Nvidia as Default Graphic Instead of Intel on Manjaro Gnome</h1>
                     <div class="post-meta">
                         <div>
                             
                             
                               
                             
-                            By arvdl | <time>July 14, 2021</time>
+                            By arvdl | <time>August 02, 2020</time>
                             | 2 minutes
                         </div>
                         <div class="tags">
-                            
-                            <a href="/tags/desktop/">desktop</a>
                             
                         </div>
                     </div>
@@ -112,105 +110,213 @@
     </a>
     Intro
 </h2>
-<p>On the last update, Manjaro got so much packages updated, including the Gnome 40, Pacman 6.0, KDE 5.22.</p>
-<p>I&rsquo;m using gnome with <strong>nvidia</strong> driver, so when the update hit me, i got an error. When I login to Gnome, there just blank window without anything. But the strange thing is my <code>Night Ligt</code> is activated, so I though there is no problem about the kernel driver <code>nvidia</code>.</p>
-<p>I checked the boot log from the <code>tty</code> session, there is no error related my nvidia driver. So I believe there is an error about my gnome desktop.</p>
-<p>Below step-by-step I just done to solve my gnome40 blank issue.</p>
-<h2 id="backup-previous-gnome-configuration">
-    <a href="#backup-previous-gnome-configuration" class="anchor">
+<p>So i got laptop with dual vga card <code>Nvidia</code> and <code>Intel</code>, the I install Manjaro with Gnome desktop on top of it.</p>
+<p>Now, how I can set up <code>Nvidia</code> as default graphic driver instead of <code>Intel</code> on my manjaro system.</p>
+<h3 id="install-nvidia-graphic-driver-on-manjaro">
+    <a href="#install-nvidia-graphic-driver-on-manjaro" class="anchor">
         <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
             <path fill-rule="evenodd"
                 d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
             </path>
         </svg>
     </a>
-    Backup Previous Gnome Configuration
-</h2>
-<p>Turn up your computer and once you got the GDM login, press the button <code>Ctrl + Alt + F2</code> to access the <code>TTY</code> session, then login with your username and password.</p>
-<p>Backup your gnome configuration using the following command.</p>
+    Install nvidia graphic driver on manjaro
+</h3>
+<p>To install nvidia graphic driver on manjaro, run the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">mv ~/.config/gnome/user ~/Desktop/user.bak
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mhwd -a pci nonfree <span class="m">0300</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="add-new-user">
-    <a href="#add-new-user" class="anchor">
+</div><p>Now <code>reboot</code> the system and check again the installed nvidia driver.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mhwd -li
+</code></pre></td></tr></table>
+</div>
+</div><p>Make sure you got the <code>video-hybrid-intel-nvidia-prime</code> driver.</p>
+<h3 id="check-busid-of-nvidia-graphic-card">
+    <a href="#check-busid-of-nvidia-graphic-card" class="anchor">
         <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
             <path fill-rule="evenodd"
                 d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
             </path>
         </svg>
     </a>
-    Add New User
-</h2>
-<p>Create new user to generate default gnome configuration and reboot the system.</p>
+    Check BusID of nvidia graphic card
+</h3>
+<p>Before going any further, check <code>BusID</code> of your nvidia graphic.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo lspci <span class="p">|</span> grep -E <span class="s2">&#34;VGA|3D&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Below is the an example result.</p>
+<pre><code>00:02.0 VGA compatible controller: Intel Corporation XXLake-H GT2 [UHD Graphics XXX]
+01:00.0 3D controller: NVIDIA Corporation GPXXM [GeForce GTX 10XX Ti Mobile] (rev a1)
+</code></pre><p>The <code>BusID</code> for nvidia graphic card is <code>PCI:1:0:0</code>, and for intel is <code>PCI:2:0:0</code>.</p>
+<h3 id="setup-xorg-configuration-for-nvidia">
+    <a href="#setup-xorg-configuration-for-nvidia" class="anchor">
+        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+            <path fill-rule="evenodd"
+                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
+            </path>
+        </svg>
+    </a>
+    Setup Xorg configuration for nvidia
+</h3>
+<p>By default the <code>mhwd</code> tool created the nvidia graphic driver configuration <code>/etc/X11/xorg.conf.d/90-mhwd.conf</code>.</p>
+<p>Delete the default mhwd configuration and create another one.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo rm -f /etc/X11/xorg.conf.d/90-mhwd.conf
+sudo vim /etc/X11/xorg.conf.d/optimus.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>Change the <code>BusID</code> options as your own and paste the configuration.</p>
+<pre><code>Section &quot;Module&quot;
+    Load &quot;modesetting&quot;
+EndSection
+
+Section &quot;Device&quot;
+    Identifier &quot;nvidia&quot;
+    Driver &quot;nvidia&quot;
+    BusID &quot;PCI:1:0:0&quot;
+    Option &quot;AllowEmptyInitialConfiguration&quot;
+EndSection
+</code></pre><p>Save.</p>
+<h3 id="block-nouveau-and-enable-nvidia-drmmodeset">
+    <a href="#block-nouveau-and-enable-nvidia-drmmodeset" class="anchor">
+        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+            <path fill-rule="evenodd"
+                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
+            </path>
+        </svg>
+    </a>
+    Block nouveau and Enable nvidia-drm.modeset
+</h3>
+<p>Backup all default configuration at the <code>/etc/modprobe.d/</code> directory.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p ~/backup-conf/
+sudo mv /etc/modprobe.d/*.conf ~/backup-conf/
+</code></pre></td></tr></table>
+</div>
+</div><p>Create new blacklist configuration.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo vim /etc/modprobe.d/nvidia.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>Paste the following configuration to block the <code>nouveau</code> kernel driver.</p>
+<pre><code>blacklist nouveau
+blacklist nvidiafb
+blacklist riafb
+</code></pre><p>Save.</p>
+<p>Next, enable the <code>nvidia-drm.modeset</code> by creating new configuration.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo vim /etc/modprobe.d/nvidia-drm.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>Paste the following configuration.</p>
+<pre><code>options nvidia_drm modeset=1
+</code></pre><p>Save.</p>
+<h3 id="setup-ourput-source-for-gdm-gnome-display-manager">
+    <a href="#setup-ourput-source-for-gdm-gnome-display-manager" class="anchor">
+        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+            <path fill-rule="evenodd"
+                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
+            </path>
+        </svg>
+    </a>
+    Setup ourput source for GDM (Gnome Display Manager)
+</h3>
+<p>Create new configuration file.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo vim /usr/local/share/optimus.desktop
+</code></pre></td></tr></table>
+</div>
+</div><p>Paste the following configuration.</p>
+<pre><code>[Desktop Entry]
+Type=Application
+Name=Optimus
+Exec=sh -c &quot;xrandr --setprovideroutputsource modesetting NVIDIA-0; xrandr --auto&quot;
+NoDisplay=true
+X-GNOME-Autostart-Phase=DisplayServer
+</code></pre><p>Save.</p>
+<p>Now make it auto-start on the login.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo ln -s /usr/local/share/optimus.desktop /usr/share/gdm/greeter/autostart/optimus.desktop
+sudo ln -s /usr/local/share/optimus.desktop /etc/xdg/autostart/optimus.desktop
+</code></pre></td></tr></table>
+</div>
+</div><p>After that <code>reboot</code> the system.</p>
+<h3 id="verify-the-nvidia-driver">
+    <a href="#verify-the-nvidia-driver" class="anchor">
+        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+            <path fill-rule="evenodd"
+                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
+            </path>
+        </svg>
+    </a>
+    Verify the nvidia driver
+</h3>
+<p>To verify our setup, run the following command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">glxinfo <span class="p">|</span> grep -i vendor
+</code></pre></td></tr></table>
+</div>
+</div><p>Optionall, you can use the tool <code>nvtop</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo useradd -m -s /bin/bash newuser
-sudo passwd newuser
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo pamac install nvtop
 
-sudo reboot
+nvtop
 </code></pre></td></tr></table>
 </div>
-</div><p>Now you must login to the gnome desktop with the new user, and the default gnome configuration <code>~/.config/gnome/user</code> will be generated.</p>
-<h2 id="copy-configuration-from-new-user-to-old-user">
-    <a href="#copy-configuration-from-new-user-to-old-user" class="anchor">
-        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-            <path fill-rule="evenodd"
-                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
-            </path>
-        </svg>
-    </a>
-    Copy Configuration from New User to Old User
-</h2>
-<p>Once you get the GDM login, access the <code>TTY</code> session again and login with your <strong><code>OLD</code></strong> user and password.</p>
-<p>Grab the root privileges and copy the gnome configuration from the <code>New User</code> home directory to the <code>Old User</code> home directory.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo su
-cp /home/newuser/.config/gnome/user /home/olduser/.config/gnome/user
-
-sudo chown olduser:olduser /home/olduser/.config/gnome/user
-</code></pre></td></tr></table>
-</div>
-</div><p>Now reboot your system <code>sudo reboot</code>.</p>
-<h2 id="login-with-the-old-user-and-cleanup">
-    <a href="#login-with-the-old-user-and-cleanup" class="anchor">
-        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-            <path fill-rule="evenodd"
-                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
-            </path>
-        </svg>
-    </a>
-    Login with the Old User and Cleanup
-</h2>
-<p>Now you can login again to the gnome desktop with <code>old user</code> and everything under your home directory is safe, you just need to setup the gnome desktop again as your flavour.</p>
-<p>Now you can delete the new user that we&rsquo;ve created before.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo userdel -r newuser
-</code></pre></td></tr></table>
-</div>
-</div><p>And everything is back.</p>
-<p>The gnome40 is amazing with smooth transition etc, its just awesome 🙈.</p>
+</div><p>Enjoy your system is fully using nvidia graphic card.</p>
 
     </div>
 </div>
@@ -219,12 +325,17 @@ sudo chown olduser:olduser /home/olduser/.config/gnome/user
     
     <nav class="flex container suggested">
         
-        <a rel="prev" href="/posts/nvidia-instead-intel-manjaro-gnome/" title="Previous post (older)">
+        <a rel="prev" href="/posts/mac-address-linux/" title="Previous post (older)">
             <span>Previous</span>
-            Setup Nvidia as Default Graphic Instead of Intel on Manjaro Gnome
+            MAC Address Spoofing on Linux
             </a>
         
         
+        
+        <a rel="next" href="/posts/gnome40-manjaro-blank/" title="Next post (newer)">
+            <span>Next</span>
+            Gnome40 Manjaro Blank After Upgrade
+            </a> 
         
     </nav>
     
