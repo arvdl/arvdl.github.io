@@ -130,10 +130,10 @@
 <p>Backup your gnome configuration using the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">mv ~/.config/gnome/user ~/Desktop/user.bak
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mv ~/.config/gnome/user ~/Desktop/user.bak
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="add-new-user">
@@ -149,13 +149,13 @@
 <p>Create new user to generate default gnome configuration and reboot the system.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo useradd -m -s /bin/bash newuser
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo useradd -m -s /bin/bash newuser
 sudo passwd newuser
 
 sudo reboot
@@ -176,13 +176,13 @@ sudo reboot
 <p>Grab the root privileges and copy the gnome configuration from the <code>New User</code> home directory to the <code>Old User</code> home directory.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo su
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo su
 cp /home/newuser/.config/gnome/user /home/olduser/.config/gnome/user
 
 sudo chown olduser:olduser /home/olduser/.config/gnome/user
@@ -203,10 +203,10 @@ sudo chown olduser:olduser /home/olduser/.config/gnome/user
 <p>Now you can delete the new user that we&rsquo;ve created before.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo userdel -r newuser
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo userdel -r newuser
 </code></pre></td></tr></table>
 </div>
 </div><p>And everything is back.</p>
@@ -219,9 +219,9 @@ sudo chown olduser:olduser /home/olduser/.config/gnome/user
     
     <nav class="flex container suggested">
         
-        <a rel="prev" href="/posts/nvidia-instead-intel-manjaro-gnome/" title="Previous post (older)">
+        <a rel="prev" href="/posts/zsh-tmux-alacrity/" title="Previous post (older)">
             <span>Previous</span>
-            Setup Nvidia as Default Graphic Instead of Intel on Manjaro Gnome
+            How to Setup Zsh Tmux and Alacritty
             </a>
         
         

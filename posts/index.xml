@@ -18,6 +18,19 @@ I&amp;rsquo;m using gnome with nvidia driver, so when the update hit me, i got a
     </item>
     
     <item>
+      <title>How to Setup Zsh Tmux and Alacritty</title>
+      <link>https://arvdl.github.io/posts/zsh-tmux-alacrity/</link>
+      <pubDate>Sat, 03 Oct 2020 10:14:19 +0700</pubDate>
+      
+      <guid>https://arvdl.github.io/posts/zsh-tmux-alacrity/</guid>
+      <description>So lets just get started for setting up zsh, tmux, and Alacritty.
+   Alacritty Installation  Alacritty is fast and awesome terminal emulator with multi-platform support. My best choice an alternative for urxvt and terminator. I still considering for setting up st.
+For archlinux user, install alacritty via pacman.
+1  sudo pacman -S alacritty   Setup the alacritty configuration directory.
+1  mkdir -p ~/.config/alacritty/; cd ~/.</description>
+    </item>
+    
+    <item>
       <title>Setup Nvidia as Default Graphic Instead of Intel on Manjaro Gnome</title>
       <link>https://arvdl.github.io/posts/nvidia-instead-intel-manjaro-gnome/</link>
       <pubDate>Sun, 02 Aug 2020 13:53:55 +0700</pubDate>

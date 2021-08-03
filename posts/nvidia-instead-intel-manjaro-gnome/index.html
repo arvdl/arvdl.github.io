@@ -125,19 +125,19 @@
 <p>To install nvidia graphic driver on manjaro, run the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mhwd -a pci nonfree <span class="m">0300</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mhwd -a pci nonfree <span class="m">0300</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Now <code>reboot</code> the system and check again the installed nvidia driver.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mhwd -li
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mhwd -li
 </code></pre></td></tr></table>
 </div>
 </div><p>Make sure you got the <code>video-hybrid-intel-nvidia-prime</code> driver.</p>
@@ -154,10 +154,10 @@
 <p>Before going any further, check <code>BusID</code> of your nvidia graphic.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo lspci <span class="p">|</span> grep -E <span class="s2">&#34;VGA|3D&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo lspci <span class="p">|</span> grep -E <span class="s2">&#34;VGA|3D&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Below is the an example result.</p>
@@ -178,11 +178,11 @@
 <p>Delete the default mhwd configuration and create another one.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo rm -f /etc/X11/xorg.conf.d/90-mhwd.conf
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo rm -f /etc/X11/xorg.conf.d/90-mhwd.conf
 sudo vim /etc/X11/xorg.conf.d/optimus.conf
 </code></pre></td></tr></table>
 </div>
@@ -211,21 +211,21 @@ EndSection
 <p>Backup all default configuration at the <code>/etc/modprobe.d/</code> directory.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p ~/backup-conf/
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p ~/backup-conf/
 sudo mv /etc/modprobe.d/*.conf ~/backup-conf/
 </code></pre></td></tr></table>
 </div>
 </div><p>Create new blacklist configuration.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo vim /etc/modprobe.d/nvidia.conf
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo vim /etc/modprobe.d/nvidia.conf
 </code></pre></td></tr></table>
 </div>
 </div><p>Paste the following configuration to block the <code>nouveau</code> kernel driver.</p>
@@ -236,10 +236,10 @@ blacklist riafb
 <p>Next, enable the <code>nvidia-drm.modeset</code> by creating new configuration.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo vim /etc/modprobe.d/nvidia-drm.conf
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo vim /etc/modprobe.d/nvidia-drm.conf
 </code></pre></td></tr></table>
 </div>
 </div><p>Paste the following configuration.</p>
@@ -258,10 +258,10 @@ blacklist riafb
 <p>Create new configuration file.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo vim /usr/local/share/optimus.desktop
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo vim /usr/local/share/optimus.desktop
 </code></pre></td></tr></table>
 </div>
 </div><p>Paste the following configuration.</p>
@@ -275,11 +275,11 @@ X-GNOME-Autostart-Phase=DisplayServer
 <p>Now make it auto-start on the login.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo ln -s /usr/local/share/optimus.desktop /usr/share/gdm/greeter/autostart/optimus.desktop
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo ln -s /usr/local/share/optimus.desktop /usr/share/gdm/greeter/autostart/optimus.desktop
 sudo ln -s /usr/local/share/optimus.desktop /etc/xdg/autostart/optimus.desktop
 </code></pre></td></tr></table>
 </div>
@@ -297,21 +297,21 @@ sudo ln -s /usr/local/share/optimus.desktop /etc/xdg/autostart/optimus.desktop
 <p>To verify our setup, run the following command.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">glxinfo <span class="p">|</span> grep -i vendor
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">glxinfo <span class="p">|</span> grep -i vendor
 </code></pre></td></tr></table>
 </div>
 </div><p>Optionall, you can use the tool <code>nvtop</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo pamac install nvtop
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo pamac install nvtop
 
 nvtop
 </code></pre></td></tr></table>
@@ -332,9 +332,9 @@ nvtop
         
         
         
-        <a rel="next" href="/posts/gnome40-manjaro-blank/" title="Next post (newer)">
+        <a rel="next" href="/posts/zsh-tmux-alacrity/" title="Next post (newer)">
             <span>Next</span>
-            Gnome40 Manjaro Blank After Upgrade
+            How to Setup Zsh Tmux and Alacritty
             </a> 
         
     </nav>
