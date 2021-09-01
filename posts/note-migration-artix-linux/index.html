@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="theme-color" content="dark">
-    <title>Gnome40 Manjaro Blank After Upgrade | arvdl notes</title>
+    <title>Note Migration Artix Linux | arvdl notes</title>
 
     
     
     
     <meta property="og:site_name" content="🐳arvdl notes" />
-    <meta property="og:title" content="Gnome40 Manjaro Blank After Upgrade | arvdl notes"/>
-    <meta itemprop="name" content="Gnome40 Manjaro Blank After Upgrade | arvdl notes" />
-    <meta name="twitter:title" content="Gnome40 Manjaro Blank After Upgrade | arvdl notes" />
-    <meta name="application-name" content="Gnome40 Manjaro Blank After Upgrade | arvdl notes" />
+    <meta property="og:title" content="Note Migration Artix Linux | arvdl notes"/>
+    <meta itemprop="name" content="Note Migration Artix Linux | arvdl notes" />
+    <meta name="twitter:title" content="Note Migration Artix Linux | arvdl notes" />
+    <meta name="application-name" content="Note Migration Artix Linux | arvdl notes" />
 
 
     <meta name="description" content="Just notes and blog!" />
@@ -80,19 +80,17 @@
         <header class="article-header">
             <div class="thumb">
                 <div>
-                    <h1>Gnome40 Manjaro Blank After Upgrade</h1>
+                    <h1>Note Migration Artix Linux</h1>
                     <div class="post-meta">
                         <div>
                             
                             
                               
                             
-                            By arvdl | <time>July 14, 2021</time>
+                            By arvdl | <time>March 01, 2021</time>
                             | 2 minutes
                         </div>
                         <div class="tags">
-                            
-                            <a href="/tags/desktop/">desktop</a>
                             
                         </div>
                     </div>
@@ -102,115 +100,188 @@
     </article>
 
     <div class="article-post">
-    <h2 id="intro">
-    <a href="#intro" class="anchor">
+    <p>This is note after migration to Artix Linux, based on my software choices.</p>
+<h2 id="enable-archlinux-repository">
+    <a href="#enable-archlinux-repository" class="anchor">
         <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
             <path fill-rule="evenodd"
                 d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
             </path>
         </svg>
     </a>
-    Intro
+    Enable Archlinux Repository
 </h2>
-<p>On the last update, Manjaro got so much packages updated, including the Gnome 40, Pacman 6.0, KDE 5.22.</p>
-<p>I&rsquo;m using gnome with <strong>nvidia</strong> driver, so when the update hit me, i got an error. When I login to Gnome, there just blank window without anything. But the strange thing is my <code>Night Ligt</code> is activated, so I though there is no problem about the kernel driver <code>nvidia</code>.</p>
-<p>I checked the boot log from the <code>tty</code> session, there is no error related my nvidia driver. So I believe there is an error about my gnome desktop.</p>
-<p>Below step-by-step I just done to solve my gnome40 blank issue.</p>
-<h2 id="backup-previous-gnome-configuration">
-    <a href="#backup-previous-gnome-configuration" class="anchor">
-        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-            <path fill-rule="evenodd"
-                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
-            </path>
-        </svg>
-    </a>
-    Backup Previous Gnome Configuration
-</h2>
-<p>Turn up your computer and once you got the GDM login, press the button <code>Ctrl + Alt + F2</code> to access the <code>TTY</code> session, then login with your username and password.</p>
-<p>Backup your gnome configuration using the following command.</p>
+<p>You need to enable the archlinux repository after the Artix Linux installation.</p>
+<p>Install packages to support archlinux repository.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mv ~/.config/gnome/user ~/Desktop/user.bak
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo pacman -S artix-archlinux-support
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="add-new-user">
-    <a href="#add-new-user" class="anchor">
+</div><p>Edit the configuration <code>pacman.conf</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo nano /etc/pacman.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>Paste the configuration as below.</p>
+<pre><code class="language-conf" data-lang="conf">....
+# ARCH
+ [extra]
+ Include = /etc/pacman.d/mirrorlist-arch
+
+ [community]
+ Include = /etc/pacman.d/mirrorlist-arch
+
+ [multilib]
+ Include = /etc/pacman.d/mirrorlist-arch
+</code></pre><p>Now run the update repositries command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo pacman -Syyu
+</code></pre></td></tr></table>
+</div>
+</div><p>Now you&rsquo;re ready.</p>
+<h2 id="install-firefox">
+    <a href="#install-firefox" class="anchor">
         <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
             <path fill-rule="evenodd"
                 d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
             </path>
         </svg>
     </a>
-    Add New User
+    Install Firefox
 </h2>
-<p>Create new user to generate default gnome configuration and reboot the system.</p>
+<p>The default artix linux repository didn&rsquo;t provide you firefox packages. But they provides the firefox fork <code>Librewolf</code> and <code>Firedragon</code> (available on the <code>universe</code> artix repository).</p>
+<p>The firefox browser can be installed from the archlinux repository.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo pacman -Sy firefox
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="install-networkmanager">
+    <a href="#install-networkmanager" class="anchor">
+        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+            <path fill-rule="evenodd"
+                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
+            </path>
+        </svg>
+    </a>
+    Install NetworkManager
+</h2>
+<p>by default, the artix linux used <code>connman</code> for managing the network. Well I prefer <code>NetworkManager</code> because it&rsquo;s easy to use on graphical and ncurses or tui.</p>
+<p>Install NetworkManager on artix linux using the following command.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo pacman -Sy networkmanager network-manager-applet networkmanager-openvpn
+</code></pre></td></tr></table>
+</div>
+</div><p>Now depends on the init system you&rsquo;re using right now, install the init startup script for network manager.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo useradd -m -s /bin/bash newuser
-sudo passwd newuser
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># For openrc</span>
+sudo pacman -S networkmanager-openrc
 
-sudo reboot
+<span class="c1"># For runit</span>
+sudo pacman -S networkmanager-runit
 </code></pre></td></tr></table>
 </div>
-</div><p>Now you must login to the gnome desktop with the new user, and the default gnome configuration <code>~/.config/gnome/user</code> will be generated.</p>
-<h2 id="copy-configuration-from-new-user-to-old-user">
-    <a href="#copy-configuration-from-new-user-to-old-user" class="anchor">
-        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-            <path fill-rule="evenodd"
-                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
-            </path>
-        </svg>
-    </a>
-    Copy Configuration from New User to Old User
-</h2>
-<p>Once you get the GDM login, access the <code>TTY</code> session again and login with your <strong><code>OLD</code></strong> user and password.</p>
-<p>Grab the root privileges and copy the gnome configuration from the <code>New User</code> home directory to the <code>Old User</code> home directory.</p>
+</div><p>Now enable the NetworkManager services. If you&rsquo;re installing artix linux from base package, you must install <code>dbus</code> and add it to the system boot first, because the <code>NetworkManager</code> service require <code>dbus</code> running at first.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo su
-cp /home/newuser/.config/gnome/user /home/olduser/.config/gnome/user
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># For openrc</span>
+rc-update add NetworkManager default
 
-sudo chown olduser:olduser /home/olduser/.config/gnome/user
+<span class="c1"># For runit</span>
+ln -s /etc/runit/sv/NetworkManager /run/runit/service/
 </code></pre></td></tr></table>
 </div>
-</div><p>Now reboot your system <code>sudo reboot</code>.</p>
-<h2 id="login-with-the-old-user-and-cleanup">
-    <a href="#login-with-the-old-user-and-cleanup" class="anchor">
+</div><p>Now disable <code>connman</code> to run at boot.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># For openrc</span>
+rc-update del connman
+
+<span class="c1"># For runit</span>
+touch /run/runit/service/connman/down
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="installing-basic-tools">
+    <a href="#installing-basic-tools" class="anchor">
         <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
             <path fill-rule="evenodd"
                 d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
             </path>
         </svg>
     </a>
-    Login with the Old User and Cleanup
+    Installing Basic Tools
 </h2>
-<p>Now you can login again to the gnome desktop with <code>old user</code> and everything under your home directory is safe, you just need to setup the gnome desktop again as your flavour.</p>
-<p>Now you can delete the new user that we&rsquo;ve created before.</p>
+<p>run pacman below.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo userdel -r newuser
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo pacman -S vim gnome-keyring openbsd-netcat cpupower binutils make gcc pkg-config fakeroot
 </code></pre></td></tr></table>
 </div>
-</div><p>And everything is back.</p>
-<p>The gnome40 is amazing with smooth transition etc, its just awesome 🙈.</p>
+</div><p>Done.</p>
+<h2 id="optionally">
+    <a href="#optionally" class="anchor">
+        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+            <path fill-rule="evenodd"
+                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
+            </path>
+        </svg>
+    </a>
+    Optionally
+</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo pacman -S neofetch
+</code></pre></td></tr></table>
+</div>
+</div><p>Ok done you&rsquo;re ready to rock and your system is faster than any other.</p>
+<p><em>FEEL FREE USING NON SYSTEMD DISTRIBUTION</em></p>
 
     </div>
 </div>
@@ -219,12 +290,17 @@ sudo chown olduser:olduser /home/olduser/.config/gnome/user
     
     <nav class="flex container suggested">
         
-        <a rel="prev" href="/posts/note-migration-artix-linux/" title="Previous post (older)">
+        <a rel="prev" href="/posts/zsh-tmux-alacrity/" title="Previous post (older)">
             <span>Previous</span>
-            Note Migration Artix Linux
+            How to Setup Zsh Tmux and Alacritty
             </a>
         
         
+        
+        <a rel="next" href="/posts/gnome40-manjaro-blank/" title="Next post (newer)">
+            <span>Next</span>
+            Gnome40 Manjaro Blank After Upgrade
+            </a> 
         
     </nav>
     

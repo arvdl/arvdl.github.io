@@ -18,6 +18,20 @@ I&amp;rsquo;m using gnome with nvidia driver, so when the update hit me, i got a
     </item>
     
     <item>
+      <title>Note Migration Artix Linux</title>
+      <link>https://arvdl.github.io/posts/note-migration-artix-linux/</link>
+      <pubDate>Mon, 01 Mar 2021 15:47:49 +0700</pubDate>
+      
+      <guid>https://arvdl.github.io/posts/note-migration-artix-linux/</guid>
+      <description>This is note after migration to Artix Linux, based on my software choices.
+   Enable Archlinux Repository  You need to enable the archlinux repository after the Artix Linux installation.
+Install packages to support archlinux repository.
+1  sudo pacman -S artix-archlinux-support   Edit the configuration pacman.conf.
+1  sudo nano /etc/pacman.conf   Paste the configuration as below.
+.... # ARCH [extra] Include = /etc/pacman.d/mirrorlist-arch [community] Include = /etc/pacman.</description>
+    </item>
+    
+    <item>
       <title>How to Setup Zsh Tmux and Alacritty</title>
       <link>https://arvdl.github.io/posts/zsh-tmux-alacrity/</link>
       <pubDate>Sat, 03 Oct 2020 10:14:19 +0700</pubDate>
